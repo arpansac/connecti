@@ -4,8 +4,14 @@ class PostsController < ApplicationController
   before_action :authorize_user, only: [:destroy]
 
   def home
+    # for new posts
   	@post = Post.new
+
+    # for list of posts
   	@posts = Post.all
+
+    # for new comment
+    @comment = Comment.new
   end
 
   def create

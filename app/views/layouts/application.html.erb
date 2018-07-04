@@ -9,12 +9,12 @@
   </head>
 
   <body>
-  	<div>
-  		<div>
+  	<div id="common-header">
+  		<div class='logo'>
   			<img width="45" src="https://image.freepik.com/free-icon/reddit-logo_318-67806.jpg">
   		</div>
 
-  		<div>
+  		<div class='auth-info-links'>
   			<% if user_signed_in? %>
   			<p><%= current_user.email %></p>
   			<p><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></p>

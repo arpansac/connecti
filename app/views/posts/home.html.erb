@@ -1,9 +1,9 @@
-<main>
+<main id="posts-home">
 
 	<div>Group Links</div>
 
-	<div>
-		<div>
+	<div class="deewar-posts">
+		<div class="new-post-form">
 			<% if user_signed_in? %>
 			<%= form_for @post do |f| %>
 				<%= f.label :content %>
@@ -14,14 +14,67 @@
 			<% end %>
 		</div>
 
-		<div>
-			<ul>
+		<div >
+			<ul class="posts-list">
 				<% @posts.reverse.each do |post| %>
-				<p><%= post.content %></p>
-				<p><%= post.user.email %></p>
-				<% if user_signed_in? && post.user_id ==  current_user.id %>
-				<p><%= link_to "Delete", destroy_post_path(post.id), method: :delete %></p>
-				<% end %>
+				<li>
+					<div>
+
+						<p><%= post.content %></p>
+						<p><%= post.user.email %></p>
+						<% if user_signed_in? && post.user_id ==  current_user.id %>
+						<p><%= link_to "Delete", destroy_post_path(post.id), method: :delete %></p>
+						<% end %>
+
+						<% if user_signed_in? %>
+						<p>
+							<sub>
+								<%= post.likes.length %>
+								&nbsp
+								<%= link_to post.like_status_string(current_user.id), toggle_like_path(post.id), method: :post %>
+							</sub>
+						</p>
+						<% else %>
+						<sub>
+								<%= post.likes.length %> Likes
+						
+							</sub>
+
+						<% end %>
+
+						<div>
+							<h5>Add Comment</h5>
+							<% if user_signed_in? %>
+							<%= form_for @comment do |f| %>
+								<%= f.hidden_field :post_id, value: post.id %>
+
+								<%= f.label :content %>
+								<%= f.text_area :content %>
+
+								<%= f.submit %>
+							<% end %>
+							<% end %>
+
+							<ul>
+								<% post.comments.reverse.each do |comment| %>
+								<li>
+									<p><%= comment.content %>
+										<sub><%= comment.user.email %></sub>
+									</p>
+									<% if user_signed_in? && comment.user_id ==  current_user.id %>
+										<p><%= link_to "Delete", destroy_comment_path(comment.id), method: :delete %></p>
+										<% end %>
+
+								</li>
+
+								<% end %>
+							</ul>
+
+
+						</div>
+					</div>
+				</li>
+
 				<% end %>
 			</ul>
 
