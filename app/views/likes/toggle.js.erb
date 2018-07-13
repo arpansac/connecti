@@ -1,0 +1,16 @@
+console.log('like toggle called');
+
+
+var newLike = $('<%= escape_javascript render "posts/post_like_link", post: @post %>');
+
+
+// console.log('#post-<%= @post.id %>-likes');
+// $('#post-<%= @post.id %>-likes').empty();
+$('#post-<%= @post.id %>-likes').html(newLike);
+
+new Noty({
+    text: 'Like Status Changed!',
+    theme: 'relax',
+    type: 'success',
+    layout: 'topRight'
+}).show();

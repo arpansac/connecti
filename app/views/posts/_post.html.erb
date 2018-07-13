@@ -9,10 +9,8 @@
 
 		<% if user_signed_in? %>
 		<p>
-			<sub>
-				<%= post.likes.length %>
-				&nbsp
-				<%= link_to post.like_status_string(current_user.id), toggle_like_path(post.id), method: :post %>
+			<sub id="post-<%= post.id %>-likes" class="post-like-status">
+				<%= render 'post_like_link', post: post %>
 			</sub>
 		</p>
 		<% else %>

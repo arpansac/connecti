@@ -16,12 +16,15 @@ class PostsController < ApplicationController
 
   def create
 
-  	post = Post.create(content: params[:post][:content], user_id: current_user.id)
-  	redirect_to action: "home"
+  	@post = Post.create(content: params[:post][:content], user_id: current_user.id)
+  	@comment =Comment.new
+    # commented for using js request as well
+    # redirect_to action: "home"
 
   end
 
   def destroy
+    @post_id = @post.id
 	@post.destroy
 
   	# redirect_to action: "home"
