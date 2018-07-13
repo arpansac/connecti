@@ -1,0 +1,9 @@
+console.log('creating comment for a post');
+
+var commentsListContainer = $('#post-comment-list-<%= @new_comment.post_id %>')
+
+var newCommentHTML = $("<%= escape_javascript render 'comments/comment', comment: @new_comment %>");
+
+commentsListContainer.prepend(newCommentHTML);
+
+

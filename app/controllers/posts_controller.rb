@@ -17,7 +17,6 @@ class PostsController < ApplicationController
   def create
 
   	post = Post.create(content: params[:post][:content], user_id: current_user.id)
-
   	redirect_to action: "home"
 
   end
@@ -25,7 +24,7 @@ class PostsController < ApplicationController
   def destroy
 	@post.destroy
 
-  	redirect_to action: "home"
+  	# redirect_to action: "home"
   end
 
 
