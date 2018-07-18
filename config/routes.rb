@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   
 
+  get 'users/profile/:id', to: 'users#profile'
+ 
+
+  post 'users/upload_avatar/:id', to: 'users#upload_avatar', as: :user_avatar_upload
+  
+
   post 'likes/toggle/:post_id', to: 'likes#toggle', as: :toggle_like
 
   post 'comments/create', as: :comments

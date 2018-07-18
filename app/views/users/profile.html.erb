@@ -1,0 +1,11 @@
+<h1>Profile Page</h1>
+
+
+<p><%= @user.email %></p>
+
+<img src="<%= @user.avatar %>">
+
+<%= form_for @user, url: user_avatar_upload_path(@user.id), html: { multipart: true }, method: :post do |form| %>
+  <%= form.file_field :avatar %>
+  <%= form.submit %>
+<% end %>
