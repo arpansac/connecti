@@ -12,6 +12,9 @@ class PostsController < ApplicationController
 
     # for new comment
     @comment = Comment.new
+
+    @all_users = User.all.order("id").pluck(:email)
+    @user_ids = User.all.order("id").pluck(:id)
   end
 
   def create

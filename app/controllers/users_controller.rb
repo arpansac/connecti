@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
 
   def upload_avatar
-
   	@user = User.find(params[:id])
   	@user.avatar = params[:user][:avatar]
   	@user.save

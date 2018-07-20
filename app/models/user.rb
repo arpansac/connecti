@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # , :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :confirmable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
@@ -11,5 +11,47 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+
+  # this is a class method
+  def self.from_omniauth(data)
+  # can be accessed by User.from_omniauth
+   user = User.find_by(email: data.email)
+
+   if user.confirmed_at.blank?
+   	user.confirmed_at = Time.now
+   	user.save
+   end
+
+   if user.blank?
+   	user = User.create(
+   			email: data.email,
+   			password: SecureRandom.uuid,
+   			confirmed_at: Time.now
+   		)
+   end
+
+   return user
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end
