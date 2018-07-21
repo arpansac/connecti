@@ -36,9 +36,21 @@ class User < ApplicationRecord
   end
 
 
+  # for creating an auth token for a user to login using API
+  def set_auth_token
+    self.auth_token = SecureRandom.uuid
+
+    self.save
+
+    # ideally, check the validity of the auth token and then either return a new one or the same if valid
+
+  end
 
 
+# assignment
+  def remove_auth_token_validity
 
+  end
 
 
 

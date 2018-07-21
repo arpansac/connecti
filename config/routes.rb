@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
   
+  namespace :api do
+
+    namespace :v1 do
+      get 'home', to: 'posts#home'
+      post 'posts/create', to: 'posts#create'
+      post 'users/sign_in', to: 'users#sign_in'
+    end
+
+    namespace :v2 do
+       get 'home', to: 'posts#home'
+
+    end
+
+  end
+
+
 
   get 'users/profile/:id', to: 'users#profile'
  
@@ -14,6 +30,7 @@ Rails.application.routes.draw do
 
 	# Post routes
   root 'posts#home'
+  get 'posts/home', to: 'posts#home'
   post 'posts/create', as: :posts
   delete 'posts/:id', to: 'posts#destroy', as: :destroy_post
 

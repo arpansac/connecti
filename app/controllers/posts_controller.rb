@@ -15,6 +15,22 @@ class PostsController < ApplicationController
 
     @all_users = User.all.order("id").pluck(:email)
     @user_ids = User.all.order("id").pluck(:id)
+
+    # this is specific for returning the defined formats, if we remove this block and just render json directly, it will send only json for all formats
+    respond_to do |format|
+      format.html
+      format.json {
+          if params[:details] == "true"
+              return render json: @posts, each_serializer: PostDetailSerializer
+          else
+              return render json: @posts
+          end
+
+          
+       }
+
+    end
+
   end
 
   def create
