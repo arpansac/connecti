@@ -10,12 +10,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
   </head>
 
   <body>
   	<div id="common-header">
-  		<div class='logo'>
+  		<div class='logo animated bounce infinite'>
   			<img width="45" src="https://image.freepik.com/free-icon/reddit-logo_318-67806.jpg">
   		</div>
 
@@ -36,8 +38,9 @@
     <%= yield %>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
-
-    
+    <script>
+              new WOW().init();
+    </script>
   </body>
 </html>
 
