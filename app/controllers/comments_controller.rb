@@ -11,8 +11,12 @@ class CommentsController < ApplicationController
   		post_id: params[:comment][:post_id]
   		)
 
-    UserMailer.new_comment(@new_comment.id).deliver_now
-  	# redirect_to root_path
+    # UserMailer.new_comment(@new_comment.id).deliver_now
+    # NewCommentEmailWorker.perform(@new_comment.id)
+
+    Resque.enqueue(NewCommentEmailWorker, @new_comment.id)
+
+    # redirect_to root_path
 
   end
 

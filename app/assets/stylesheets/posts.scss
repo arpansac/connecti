@@ -40,6 +40,16 @@
 		}
 	}
 
+	@media (min-width: 340px) and (max-width: 480px)and (orientation: portrait) {
+		.hide-small-screen{
+			display: none;
+		}
+
+		.deewar-posts{
+			width: 100%;
+		}
+	}
+
 }
 
 
