@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
 
   get 'users/profile/:id', to: 'users#profile'
+  get 'users/search', to: 'users#search'
  
 
   post 'users/upload_avatar/:id', to: 'users#upload_avatar', as: :user_avatar_upload
