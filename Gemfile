@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'pg', '=0.19'
+
 gem 'resque'
 
 gem 'active_model_serializers', '~> 0.10.0'
